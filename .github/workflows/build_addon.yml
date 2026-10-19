@@ -34,7 +34,8 @@ jobs:
           zip -r ../custom_addon.mcaddon *
 
       - name: Upload Finished Addon
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: minecraft-addon
           path: custom_addon.mcaddon
+

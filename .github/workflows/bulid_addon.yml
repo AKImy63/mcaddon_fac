@@ -1,0 +1,40 @@
+name: Minecraft Addon Auto Factory
+
+on:
+  issues:
+    types: [opened]
+  workflow_dispatch:
+
+jobs:
+  build-and-repair:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: Install Dependencies
+        run: |
+          pip install google-genai pillow
+
+      - name: Run AI Factory with Auto-Repair
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          ADDON_PROMPT: ${{ github.event.issue.body || '可愛い魔法のモンスター' }}
+        run: |
+          python generate_addon.py
+
+      - name: Compress to .mcaddon
+        run: |
+          cd addon_output
+          zip -r ../custom_addon.mcaddon *
+
+      - name: Upload Finished Addon
+        uses: actions/upload-artifact@v4
+        with:
+          name: minecraft-addon
+          path: custom_addon.mcaddon

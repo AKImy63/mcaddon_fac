@@ -36,6 +36,5 @@ jobs:
       - name: Upload Finished Addon
         uses: actions/upload-artifact@v4
         with:
-          name: minecraft-addon
+          name: minecraft-addon-v4
           path: custom_addon.mcaddon
-

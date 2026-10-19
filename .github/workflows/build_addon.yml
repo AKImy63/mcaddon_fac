@@ -33,3 +33,14 @@ jobs:
           cd addon_output
           zip -r ../custom_addon.mcaddon *
           echo "=== アドオンの圧縮が完了しました！ ==="
+      - name: Archive Addon Files
+        run: |
+          # フォルダをzip（またはmcaddon）に固める処理
+          cd addon_output
+          zip -r ../custom_addon.mcaddon .
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: custom-addon-file
+          path: custom_addon.mcaddon

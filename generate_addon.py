@@ -33,8 +33,8 @@ print("\n[Phase 1] コーダーAI：JSON設計および構文自己修復テス�
 for attempt in range(1, max_retries + 1):
     print(f"-> Code Trial {attempt}/{max_retries}...")
     try:
-        response = client.models.generate_content(
-            model='gemini-2.5-flash',
+          response = client.models.generate_content(
+            model='gemini-3.8-flash',
             contents=f"""
             あなたはマインクラフト統合版(Bedrock Edition)のプロフェッショナル開発者です。
             以下の要望に基づいて、カスタムモブのJSONを生成してください。
